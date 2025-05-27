@@ -1,0 +1,48 @@
+@base <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix kdrama: <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama#> .
+
+
+<#KDramaMapping>
+  rml:logicalSource [
+    rml:source "kdrama_dataset_reduced.csv" ;
+    rml:referenceFormulation ql:CSV
+  ] ;
+
+  rr:subjectMap [
+    rr:template "kdrama:{kdrama_id}" ;
+    rr:termType rr:IRI ;
+    rr:class kdrama:KDrama
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:title ;
+    rr:objectMap [ rml:reference "drama_name" ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:releaseYear ;
+    rr:objectMap [ rml:reference "year" ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:numberOfEpisodes ;
+    rr:objectMap [ rml:reference "tot_eps" ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:duration ;
+    rr:objectMap [ rml:reference "duration" ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:airedOn ;
+    rr:objectMap [ rml:reference "aired_on" ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:platform ;
+    rr:objectMap [ rml:reference "org_net" ]
+  ] .

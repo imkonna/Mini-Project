@@ -1,0 +1,42 @@
+@base <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix kdrama: <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama#> .
+
+
+<#ReviewMapping>
+  rml:logicalSource [
+    rml:source "reviews_new.csv" ;
+    rml:referenceFormulation ql:CSV
+  ] ;
+
+  rr:subjectMap [
+    rr:template "kdrama:{review_id}" ;
+    rr:termType rr:IRI ;
+    rr:class kdrama:Review
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:writtenBy ;
+    rr:objectMap [
+      rr:template "kdrama:{user_id}" ;
+      rr:termType rr:IRI
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:refersToDrama ;
+    rr:objectMap [
+      rr:template "kdrama:{kdrama_id}" ;
+      rr:termType rr:IRI
+    ]
+  ] ;
+
+  rr:predicateObjectMap [ rr:predicate kdrama:storyScore ; rr:objectMap [ rml:reference "story_score" ] ] ;
+  rr:predicateObjectMap [ rr:predicate kdrama:actingScore ; rr:objectMap [ rml:reference "acting_cast_score" ] ] ;
+  rr:predicateObjectMap [ rr:predicate kdrama:musicScore ; rr:objectMap [ rml:reference "music_score" ] ] ;
+  rr:predicateObjectMap [ rr:predicate kdrama:rewatchValue ; rr:objectMap [ rml:reference "rewatch_value_score" ] ] ;
+  rr:predicateObjectMap [ rr:predicate kdrama:overallScore ; rr:objectMap [ rml:reference "overall_score" ] ] ;
+  rr:predicateObjectMap [ rr:predicate kdrama:episodesWatched ; rr:objectMap [ rml:reference "ep_watched" ] ] ;
+  rr:predicateObjectMap [ rr:predicate kdrama:nHelpful ; rr:objectMap [ rml:reference "n_helpful" ] ] .

@@ -1,0 +1,33 @@
+@base <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix kdrama: <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama#> .
+
+
+<#RecommendationMapping>
+  rml:logicalSource [
+    rml:source "recommendations_final.csv" ; # Δήλωση αρχείου CSV, πάνω στο οποίο δουλεύουμε
+    rml:referenceFormulation ql:CSV # Δήλωση ότι πρόκειται για αρχείο τύπου CSV
+  ] ;
+
+  rr:subjectMap [ #Δημιουργείται ένα υποκείμενο RDF triple για κάθε γραμμή του αρχείου, με βάση τη στήλη kdrama_id
+    rr:template "kdrama:{kdrama_id}"; # Για κάθε γραμμή του CSV, δημιουργείται ένα URI
+    rr:termType rr:IRI
+  ] ;
+
+  rr:predicateObjectMap [ # Ορίζουαμε το object, δηλαδή το αντικείμενο της σύστασης: Ένα άλλο KDrama με URI x (από το πεδίο recommendation_id)
+    rr:predicate kdrama:isRecommendedWith ;
+    rr:objectMap [
+      rr:template "kdrama:{recommended_id}" ;
+      rr:termType rr:IRI
+    ]
+  ] ;
+
+  rr:predicateObjectMap [ # Για την ίδια ιδιότητα isRecommendedWith προσθέτουμε και ένα 2ο object, αυτή τη φορά ως literal (τίτλος σειράς)
+    rr:predicate kdrama:isRecommendedWith ;
+    rr:objectMap [
+      rml:reference "recommended_title" ;
+      rr:termType rr:Literal
+    ]
+  ] .

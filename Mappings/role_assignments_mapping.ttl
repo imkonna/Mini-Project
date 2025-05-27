@@ -1,0 +1,50 @@
+@base <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix kdrama: <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama#> .
+
+
+
+<#RoleAssignmentMapping>
+  rml:logicalSource [
+    rml:source "role_assignments_new.csv" ;
+    rml:referenceFormulation ql:CSV
+  ] ;
+
+  rr:subjectMap [
+    rr:template "kdrama:{kdrama_id}_{actor_id}" ;
+    rr:termType rr:IRI;
+    rr:class kdrama:RoleAssignment
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:playedBy ;
+    rr:objectMap [
+      rr:template "kdrama:{actor_id}" ;
+      rr:termType rr:IRI
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:actorName ;
+    rr:objectMap [ rml:reference "actor_name" ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:partOfDrama ;
+    rr:objectMap [
+      rr:template "kdrama:{kdrama_id}" ;
+      rr:termType rr:IRI
+    ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:characterName ;
+    rr:objectMap [ rml:reference "character_name" ]
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate kdrama:roleType ;
+    rr:objectMap [ rml:reference "role" ]
+  ] .
