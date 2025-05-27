@@ -1,0 +1,336 @@
+@prefix : <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/> .
+
+<http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama> rdf:type owl:Ontology ;
+                                                             rdfs:comment "This is an ontology about kdrama."@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/actedIn
+:actedIn rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         owl:inverseOf :hasActor ;
+         rdfs:domain :Actor ;
+         rdfs:range :KDrama .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/directed
+:directed rdf:type owl:ObjectProperty ;
+          rdfs:domain :Director ;
+          rdfs:range :KDrama .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/hasActor
+:hasActor rdf:type owl:ObjectProperty ;
+          rdfs:domain :RoleAssignment ;
+          rdfs:range :Actor ;
+          rdfs:comment "Drama has actors" .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/hasDirector
+:hasDirector rdf:type owl:ObjectProperty ;
+             rdfs:domain :KDrama ;
+             rdfs:range :Director ;
+             rdfs:comment "drama has directors" .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/hasKDrama
+:hasKDrama rdf:type owl:ObjectProperty ;
+           rdfs:domain :RoleAssignment ;
+           rdfs:range :KDrama .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/hasReview
+:hasReview rdf:type owl:ObjectProperty ;
+           rdfs:domain :KDrama ;
+           rdfs:range :Review .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/hasScreenwriter
+:hasScreenwriter rdf:type owl:ObjectProperty ;
+                 rdfs:domain :KDrama ;
+                 rdfs:range :Screenwriter ;
+                 rdfs:comment "Drama has a screenwriter" .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/isPlayedBy
+:isPlayedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :RoleAssignment ;
+            rdfs:range :Actor .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/isRecommendedWith
+:isRecommendedWith rdf:type owl:ObjectProperty ;
+                   rdfs:domain :KDrama ;
+                   rdfs:range :KDrama ;
+                   rdfs:comment "Drama is recommended by another drama" .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/writtenBy
+:writtenBy rdf:type owl:ObjectProperty ;
+           owl:inverseOf :wrote .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/wrote
+:wrote rdf:type owl:ObjectProperty ;
+       rdfs:domain :Person ;
+       rdfs:range owl:Thing .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama#directorName
+:directorName rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Director ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama#screenwriterName
+:screenwriterName rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Screenwriter ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/ActingScore
+:ActingScore rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Review ;
+             rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/actorName
+:actorName rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Actor ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/broadcastDay
+:broadcastDay rdf:type owl:DatatypeProperty ;
+              rdfs:domain :KDrama ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/characterName
+:characterName rdf:type owl:DatatypeProperty ;
+               rdfs:domain :RoleAssignment ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/contentRating
+:contentRating rdf:type owl:DatatypeProperty ;
+               rdfs:domain :KDrama ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/duration
+:duration rdf:type owl:DatatypeProperty ;
+          rdfs:domain :KDrama ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/episodesWatched
+:episodesWatched rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Review ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/helpfulCount
+:helpfulCount rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Review ;
+              rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/musicScore
+:musicScore rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Review ;
+            rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/numberOfEpisodes
+:numberOfEpisodes rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :KDrama ;
+                  rdfs:range xsd:integer ;
+                  rdfs:comment "Drama has number of episodes"@en .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/overallScore
+:overallScore rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Review ;
+              rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/platform
+:platform rdf:type owl:DatatypeProperty ;
+          rdfs:domain :KDrama ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/productionCompany
+:productionCompany rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :KDrama ;
+                   rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/rating
+:rating rdf:type owl:DatatypeProperty ;
+        rdfs:domain :KDrama ;
+        rdfs:range xsd:decimal ;
+        rdfs:comment "Drama has rating"@en .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/releaseYear
+:releaseYear rdf:type owl:DatatypeProperty ;
+             rdfs:domain :KDrama ;
+             rdfs:range xsd:integer ;
+             rdfs:comment "Drama has release year"@en .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/rewatchScore
+:rewatchScore rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Review ;
+              rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/roleType
+:roleType rdf:type owl:DatatypeProperty ;
+          rdfs:domain :RoleAssignment ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/storyScore
+:storyScore rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Review ;
+            rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/title
+:title rdf:type owl:DatatypeProperty ;
+       rdfs:domain :KDrama ;
+       rdfs:range xsd:string ;
+       rdfs:comment "Drama has title"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/Actor
+:Actor rdf:type owl:Class ;
+       owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty :actedIn ;
+                                                    owl:someValuesFrom :KDrama
+                                                  ]
+                                                ) ;
+                             rdf:type owl:Class
+                           ] ;
+       rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/Director
+:Director rdf:type owl:Class ;
+          owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :directed ;
+                                                       owl:someValuesFrom :KDrama
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] ;
+          rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/KDrama
+:KDrama rdf:type owl:Class ;
+        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasActor ;
+                          owl:someValuesFrom :Actor
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasDirector ;
+                          owl:someValuesFrom :Director
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasScreenwriter ;
+                          owl:someValuesFrom :Screenwriter
+                        ] .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/Person
+:Person rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/Review
+:Review rdf:type owl:Class ;
+        rdfs:subClassOf [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :hasReview ;
+                                                 owl:someValuesFrom :KDrama
+                                               ]
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :writtenBy ;
+                                                 owl:someValuesFrom :User
+                                               ]
+                                             ) ;
+                          rdf:type owl:Class
+                        ] .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/RoleAssignment
+:RoleAssignment rdf:type owl:Class ;
+                rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasActor ;
+                                  owl:someValuesFrom :Actor
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasKDrama ;
+                                  owl:someValuesFrom :KDrama
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :characterName ;
+                                  owl:someValuesFrom xsd:string
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :roleType ;
+                                  owl:someValuesFrom xsd:string
+                                ] .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/Screenwriter
+:Screenwriter rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :wrote ;
+                                                           owl:someValuesFrom :KDrama
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/kotso/ontologies/2025/4/kdrama/User
+:User rdf:type owl:Class ;
+      owl:equivalentClass [ owl:intersectionOf ( :Person
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :wrote ;
+                                                   owl:someValuesFrom :Review
+                                                 ]
+                                               ) ;
+                            rdf:type owl:Class
+                          ] ;
+      rdfs:subClassOf :Person .
+
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdfs:comment "Drama has people"@en .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
