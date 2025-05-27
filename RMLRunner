@@ -1,0 +1,41 @@
+import java.io.IOException;
+
+public class RMLRunner {
+    public static void main(String[] args) throws IOException, InterruptedException {
+
+        // Το όνομα του JAR αρχείου του RMLMapper - πρέπει να είναι στο root του project
+        String jar = "C:\\PROJECT _ONTOLOGY_ALL_FILES\\rmlmapper-7.3.3-r374-all.jar";
+
+        // Πίνακας με όλα τα mappings: κάθε στοιχείο περιέχει [mapping_file, output_file]
+        String[][] mappings = {
+                {"kdrama_mapping.ttl", "kdrama_output.ttl"},
+                {"screenwriter_mapping.ttl", "screenwriter_output.ttl"},
+                {"director_mapping.ttl", "director_output.ttl"},
+                {"recommendations_mapping.ttl", "recommendations_output.ttl"},
+                {"reviews_mapping.ttl", "reviews_output.ttl"},
+                {"role_assignments_mapping.ttl", "role_assignments_output.ttl"}
+        };
+
+        // Εκτέλεση κάθε mapping ξεχωριστά
+        for (String[] mapping : mappings) {
+            String mappingFile = mapping[0]; // το αρχείο .ttl του mapping
+            String outputFile = mapping[1]; // το όνομα του RDF output αρχείου
+
+            System.out.println("Running mapping:" + mappingFile);
+
+            // Δημιουργία ProcessBuilder για να εκτελέσουμε το JAR με τα arguments
+            Process process = new ProcessBuilder(
+                    "java", "-jar", jar,
+                    "-m", mappingFile,
+                    "-o", outputFile
+            ).inheritIO().start();
+
+            // Αν όλα πήγαν καλά
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                System.out.println("Mapping completed successfully for " + outputFile);
+            }
+            else {
+                System.out.println("Mapping failed for " + mappingFile);
+            }
+        }
